@@ -40,8 +40,25 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
+    fun onEqual(view: View){
+        if(lastNumeric){
+            var tvValue = tvInput?.text.toString()
 
-    fun isOperatorAdded(value : String) : Boolean {
+            try {
+                val splitValue = tvValue.split("-")
+                var one = splitValue[0]
+                var two = splitValue[1]
+
+                tvInput?.text = (one.toDouble() - two.toDouble()).toString()
+
+            }catch (e : ArithmeticException){
+                e.printStackTrace()
+            }
+
+        }
+    }
+
+    private fun isOperatorAdded(value : String) : Boolean {
         return if (value.startsWith("-")){
             false
         }
@@ -52,4 +69,5 @@ class MainActivity : AppCompatActivity() {
                     || value.contains("-")
         }
     }
+
 }
